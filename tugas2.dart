@@ -1,28 +1,39 @@
+import 'dart:io';
+
 void main() {
-  //variabel input
-  int uts = 60;
-  int uas = 58;
-  double kehadiran = 75.0;
+  // input kehadiran
+  stdout.write("kehadiran:");
+  double kehadiran = double.parse(stdin.readLineSync() ?? "0");
+
+  //uts
+  stdout.write("nilai uts:");
+  int uts = int.parse(stdin.readLineSync() ?? "0");
+
+  //uas
+  stdout.write("nilai uas:");
+  int uas = int.parse(stdin.readLineSync() ?? "0");
 
   //rata-rata
   double rataRata = (uts + uas) / 2;
 
-  //sarat kelulusan
-  //a. nilai rata-rata 70
-  //b. kehadiran 75
-  //c. uts >=60, uas >= 60 (salah satu tidak boleh di bawah 60)
+  //syarat
+  bool syaratnilaiRatarata = rataRata >= 70;
+  bool syaratkehadiran = kehadiran >= 75;
+  bool syaratnilaiMin = uts >= 60 && uas >= 60;
 
-  bool isLulus =
-      (rataRata >= 69) && (kehadiran >= 75) && (uts >= 60 && uas >= 60);
+  //JIKA LULUS
+  bool lulus = syaratnilaiMin && syaratkehadiran && syaratnilaiRatarata;
 
-  //hasil
-  print("hasil penilaian mahasiswa");
-  print("rata-rata nilai: $rataRata");
-  print("presentase: $kehadiran%");
+  print("nilai uas: $uas");
+  print("nilai uts: $uts");
+  print("kehadiran: $kehadiran");
+  print("rata rata: $rataRata");
 
-  if (isLulus) {
-    print("LULUS");
+  //keterangan
+  if (lulus) {
+    
+    print("ANDA LULUS");
   } else {
-    print("TIDAK LULUS");
+    print("ANDA GAGAL");
   }
 }
